@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#130e0b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>The Bleaching Dossier • 221B Baker Street</title>
   
   <!-- FontAwesome Icons -->
@@ -51,12 +54,12 @@
   <!-- Level Progress Ribbon (Levels I to VI) -->
   <div class="level-progress-bar">
     <div class="progress-track-strip">
-      <div class="track-pill active" id="track-pill-1">DOSSIER I</div>
-      <div class="track-pill locked" id="track-pill-2">DOSSIER II</div>
-      <div class="track-pill locked" id="track-pill-3">DOSSIER III</div>
-      <div class="track-pill locked" id="track-pill-4">DOSSIER IV</div>
-      <div class="track-pill locked" id="track-pill-5">DOSSIER V</div>
-      <div class="track-pill locked" id="track-pill-6">DOSSIER VI</div>
+      <div class="track-pill active" id="track-pill-1"><span class="pill-prefix">DOSSIER </span><span class="pill-num">I</span></div>
+      <div class="track-pill locked" id="track-pill-2"><span class="pill-prefix">DOSSIER </span><span class="pill-num">II</span></div>
+      <div class="track-pill locked" id="track-pill-3"><span class="pill-prefix">DOSSIER </span><span class="pill-num">III</span></div>
+      <div class="track-pill locked" id="track-pill-4"><span class="pill-prefix">DOSSIER </span><span class="pill-num">IV</span></div>
+      <div class="track-pill locked" id="track-pill-5"><span class="pill-prefix">DOSSIER </span><span class="pill-num">V</span></div>
+      <div class="track-pill locked" id="track-pill-6"><span class="pill-prefix">DOSSIER </span><span class="pill-num">VI</span></div>
     </div>
   </div>
 
@@ -155,17 +158,17 @@
         <!-- Detective Lifelines Bar -->
         <div class="lifelines-bar">
           <button type="button" id="lifeline-loupe-btn" class="lifeline-pill-btn" title="Eliminate two incorrect deductions (-15 pts)">
-            <i class="fa-solid fa-magnifying-glass"></i> 50:50 Loupe
+            <i class="fa-solid fa-magnifying-glass"></i> <span class="lifeline-label-full">50:50 Loupe</span><span class="lifeline-label-short">Loupe</span>
             <span class="lifeline-count" id="loupe-count-badge">6</span>
           </button>
 
           <button type="button" id="lifeline-watson-btn" class="lifeline-pill-btn" title="Consult Dr. Watson for a medical pointer (-10 pts)">
-            <i class="fa-solid fa-user-doctor"></i> Dr. Watson
+            <i class="fa-solid fa-user-doctor"></i> <span class="lifeline-label-full">Dr. Watson</span><span class="lifeline-label-short">Watson</span>
             <span class="lifeline-count" id="watson-count-badge">6</span>
           </button>
 
           <button type="button" id="lifeline-reagent-btn" class="lifeline-pill-btn" title="Perform a wet-lab chemical assay (-20 pts)">
-            <i class="fa-solid fa-flask-vial"></i> 221B Reagent
+            <i class="fa-solid fa-flask-vial"></i> <span class="lifeline-label-full">221B Reagent</span><span class="lifeline-label-short">Reagent</span>
             <span class="lifeline-count" id="reagent-count-badge">6</span>
           </button>
         </div>
@@ -297,19 +300,21 @@
       <!-- Dossier Breakdown Table -->
       <div class="finale-details-card">
         <h3><i class="fa-solid fa-list-check"></i> Complete Dossier Audit Log (All 6 Levels)</h3>
-        <table class="breakdown-table">
-          <thead>
-            <tr>
-              <th>Dossier & Focus Area</th>
-              <th>Cases Solved</th>
-              <th>Points Awarded</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="level-breakdown-tbody">
-            <!-- Populated dynamically by quiz.js -->
-          </tbody>
-        </table>
+        <div class="table-responsive-wrapper">
+          <table class="breakdown-table">
+            <thead>
+              <tr>
+                <th>Dossier & Focus Area</th>
+                <th>Cases Solved</th>
+                <th>Points Awarded</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="level-breakdown-tbody">
+              <!-- Populated dynamically by quiz.js -->
+            </tbody>
+          </table>
+        </div>
 
         <div class="finale-action-bar">
           <button id="export-csv-btn" class="wax-seal-btn">

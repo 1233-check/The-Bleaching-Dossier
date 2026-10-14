@@ -1,12 +1,13 @@
 /* ==========================================================================
-   221B Baker Street - The Bleaching Dossier: Bespoke Victorian Stylesheet
+   221B Baker Street - The Bleaching Dossier: Master Stylesheet
+   Fully Optimized for All Mobile Screen Sizes (320px - 1440px+)
    Authentic Victorian Detective Noir • Aged Parchment • Brass & Sealing Wax
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@600;700;800;900&family=Special+Elite&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Authentic Victorian Dark Woods & Rich Leathers */
+  /* Victorian Woods & Leathers */
   --desk-wood: #130e0b;
   --desk-wood-light: #1e1612;
   --panel-bg: #221915;
@@ -41,13 +42,18 @@
   /* Shadows & Textures */
   --shadow-desk: 0 16px 40px rgba(0, 0, 0, 0.75), 0 2px 6px rgba(0, 0, 0, 0.5);
   --shadow-paper: 0 6px 18px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-  --border-double-brass: 3px double var(--brass-accent);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -62,19 +68,26 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+button, input {
+  touch-action: manipulation;
 }
 
 /* ==========================================================================
-   TOP BAKER STREET BANNER
+   TOP BAKER STREET BANNER (RESPONSIVE)
    ========================================================================== */
 .baker-header {
   background: #18110d;
   border-bottom: 2px solid var(--brass-dark);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-  padding: 0.85rem 1.75rem;
+  padding: 0.75rem 1.25rem;
   position: sticky;
   top: 0;
   z-index: 100;
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0.75rem));
 }
 
 .header-inner {
@@ -83,19 +96,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .brand-crest {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
   border-radius: 50%;
   background: radial-gradient(circle, #38251b 0%, #170e0a 100%);
   border: 1.5px solid var(--brass-accent);
@@ -103,21 +116,22 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--brass-bright);
-  font-size: 1.2rem;
-  box-shadow: 0 0 12px rgba(198, 159, 83, 0.2);
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px rgba(198, 159, 83, 0.2);
 }
 
 .brand-text h1 {
   font-family: var(--font-regal);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--brass-bright);
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .brand-text .brand-tagline {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: #a48f7a;
   font-family: var(--font-editorial);
   font-style: italic;
@@ -127,97 +141,107 @@ body {
 .header-status-bar {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .investigator-pill {
   background: #241914;
   border: 1px solid var(--brass-dark);
   border-radius: 4px;
-  padding: 0.35rem 0.85rem;
+  padding: 0.3rem 0.65rem;
   display: flex;
   flex-direction: column;
 }
 
 .pill-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
   color: var(--brass-accent);
   letter-spacing: 1px;
+  line-height: 1;
 }
 
 .pill-name {
   color: #fff;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .score-badge-header {
   background: #140d09;
   border: 1px solid var(--brass-accent);
   border-radius: 4px;
-  padding: 0.35rem 0.95rem;
+  padding: 0.3rem 0.75rem;
   text-align: center;
 }
 
 .score-badge-header .score-num {
   font-family: var(--font-regal);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: #fff;
+  line-height: 1.1;
 }
 
 .brass-btn-sm {
   background: #281c16;
   border: 1px solid var(--brass-dark);
   color: #dcd0bf;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.65rem;
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.brass-btn-sm:hover {
+.brass-btn-sm:hover,
+.brass-btn-sm:active {
   background: var(--brass-dark);
   color: #fff;
   border-color: var(--brass-bright);
 }
 
 /* ==========================================================================
-   LEVEL PROGRESS TRACKER BAR
+   LEVEL PROGRESS TRACKER (FULLY RESPONSIVE)
    ========================================================================== */
 .level-progress-bar {
   max-width: 1040px;
-  margin: 1rem auto 0;
-  padding: 0 1.25rem;
+  margin: 0.75rem auto 0;
+  padding: 0 1rem;
   width: 100%;
 }
 
 .progress-track-strip {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 0.5rem;
+  gap: 0.35rem;
   background: #18110d;
-  padding: 0.6rem 0.85rem;
+  padding: 0.45rem 0.65rem;
   border-radius: 6px;
   border: 1px solid var(--brass-dark);
 }
 
 .track-pill {
   text-align: center;
-  padding: 0.4rem 0.25rem;
+  padding: 0.35rem 0.2rem;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-family: var(--font-regal);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   border: 1px solid transparent;
   color: #796654;
   background: #1e1511;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .track-pill.active {
@@ -225,7 +249,7 @@ body {
   border-color: var(--brass-accent);
   color: var(--brass-bright);
   font-weight: 700;
-  box-shadow: 0 0 10px rgba(198, 159, 83, 0.2);
+  box-shadow: 0 0 8px rgba(198, 159, 83, 0.2);
 }
 
 .track-pill.completed {
@@ -235,12 +259,12 @@ body {
 }
 
 /* ==========================================================================
-   MAIN VIEWPORT
+   MAIN VIEWPORT WRAPPER
    ========================================================================== */
 .main-wrapper {
-  max-width: 1040px;
-  margin: 1.5rem auto 3rem;
-  padding: 0 1.25rem;
+  max-width: 980px;
+  margin: 1.25rem auto 2.5rem;
+  padding: 0 1rem;
   flex: 1;
   width: 100%;
 }
@@ -250,12 +274,13 @@ body {
 }
 
 /* ==========================================================================
-   HERO / LANDING SCREEN (SIMPLE, TACTILE & INTERACTIVE)
+   HERO / LANDING SCREEN (TACTILE, SIMPLE & TOUCH-OPTIMIZED)
    ========================================================================== */
 .hero-dossier-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .manila-case-folder {
@@ -264,37 +289,38 @@ body {
   border: 2px solid var(--parchment-aged);
   border-radius: 8px;
   box-shadow: var(--shadow-desk);
-  max-width: 680px;
+  max-width: 660px;
   width: 100%;
   position: relative;
-  padding: 2.75rem 2.5rem 2.25rem;
-  margin-bottom: 2rem;
-  border-top: 10px solid #dfcfab;
+  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1.15rem, 4.5vw, 2.5rem) clamp(1.5rem, 4vw, 2.25rem);
+  margin-bottom: 1.5rem;
+  border-top: 8px solid #dfcfab;
 }
 
 .manila-case-folder::before {
   content: "CASE NO. 221-B // TOP SECRET";
   position: absolute;
-  top: -18px;
-  left: 25px;
+  top: -16px;
+  left: 20px;
   background: #dfcfab;
   color: #4a3828;
   font-family: var(--font-typewriter);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 3px 14px;
+  padding: 2px 10px;
   border-radius: 4px 4px 0 0;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   border: 1px solid var(--parchment-aged);
   border-bottom: none;
 }
 
+/* Wax Seal Stamp */
 .folder-seal-stamp {
   position: absolute;
-  top: 20px;
-  right: 25px;
-  width: 70px;
-  height: 70px;
+  top: 18px;
+  right: 18px;
+  width: 62px;
+  height: 62px;
   background: radial-gradient(circle, var(--wax-oxblood-light) 0%, var(--wax-oxblood) 100%);
   border: 2px solid #570e0e;
   border-radius: 50%;
@@ -304,29 +330,32 @@ body {
   justify-content: center;
   color: #ffdede;
   font-family: var(--font-regal);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.15;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.25);
-  transform: rotate(8deg);
+  transform: rotate(6deg);
   cursor: pointer;
   transition: transform 0.2s ease;
+  z-index: 5;
 }
 
-.folder-seal-stamp:hover {
+.folder-seal-stamp:hover,
+.folder-seal-stamp:active {
   transform: rotate(0deg) scale(1.05);
 }
 
 .hero-header {
   text-align: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+  padding-right: 0;
 }
 
 .hero-subtitle-top {
   font-family: var(--font-regal);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
   color: #7a5c37;
   text-transform: uppercase;
   margin-bottom: 0.35rem;
@@ -334,47 +363,48 @@ body {
 
 .hero-main-title {
   font-family: var(--font-editorial);
-  font-size: 2.75rem;
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
   font-weight: 700;
   color: #211610;
-  line-height: 1.1;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  line-height: 1.12;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
 }
 
 .hero-motto {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
   color: #634f3d;
+  line-height: 1.4;
 }
 
 .hero-divider {
   text-align: center;
   color: var(--brass-dark);
-  font-size: 1.1rem;
-  margin: 1.25rem 0 1.5rem;
-  letter-spacing: 6px;
+  font-size: 1rem;
+  margin: 1rem 0 1.25rem;
+  letter-spacing: 4px;
 }
 
-/* Simple Team Name Input on Folder */
+/* Input Panel */
 .hero-input-panel {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.65);
   border: 1px dashed #bda787;
   border-radius: 6px;
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 1.75rem;
+  padding: clamp(1rem, 3.5vw, 1.5rem);
+  margin-bottom: 1.5rem;
 }
 
 .team-input-label {
   display: block;
   font-family: var(--font-regal);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: #3b281b;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
 .hero-team-input {
@@ -382,18 +412,19 @@ body {
   background: #fff;
   border: 1.5px solid #9c8465;
   border-radius: 4px;
-  padding: 0.85rem 1rem;
+  padding: 0.75rem 0.95rem;
   font-family: var(--font-editorial);
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1a120c;
   outline: none;
+  min-height: 48px;
   transition: all 0.2s ease;
 }
 
 .hero-team-input:focus {
   border-color: var(--wax-oxblood);
-  box-shadow: 0 0 12px rgba(140, 32, 32, 0.25);
+  box-shadow: 0 0 10px rgba(140, 32, 32, 0.25);
 }
 
 .hero-team-input.shake-error {
@@ -416,38 +447,39 @@ body {
   color: #fff;
   border: 1.5px solid #d45959;
   border-radius: 6px;
-  padding: 1rem 2.5rem;
+  padding: 0.9rem 2rem;
   font-family: var(--font-regal);
-  font-size: 1.05rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  width: 100%;
+  max-width: 420px;
   transition: all 0.2s ease;
 }
 
-.wax-seal-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(140, 32, 32, 0.45);
+.wax-seal-btn:hover,
+.wax-seal-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(140, 32, 32, 0.4);
   background: linear-gradient(180deg, #b83333 0%, #992323 100%);
 }
 
-.wax-seal-btn:active {
-  transform: translateY(1px);
-}
-
-/* Interactive Clue & Level Explorer Drawer */
+/* Interactive Drawer on Hero */
 .hero-interactive-drawer {
   background: #1c1511;
   border: 1px solid var(--brass-dark);
   border-radius: 8px;
-  max-width: 680px;
+  max-width: 660px;
   width: 100%;
-  padding: 1.5rem;
+  padding: clamp(1rem, 3.5vw, 1.35rem);
   box-shadow: var(--shadow-desk);
 }
 
@@ -455,14 +487,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .drawer-title {
   font-family: var(--font-regal);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--brass-bright);
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -470,39 +504,39 @@ body {
   background: #281d17;
   border: 1px solid var(--brass-accent);
   color: #fff;
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  min-height: 36px;
   transition: all 0.2s;
-}
-
-.loupe-tool-btn:hover {
-  background: var(--brass-dark);
 }
 
 .secret-clue-alert {
   background: var(--parchment-base);
   color: var(--ink-primary);
   border-left: 4px solid var(--wax-oxblood);
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1rem;
   border-radius: 0 4px 4px 0;
   font-family: var(--font-typewriter);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
 }
 
-/* Folder Tabs on Hero */
+/* Horizontal Swipeable Tabs on Mobile */
 .hero-folder-tabs {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.35rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.85rem;
   border-bottom: 1px solid #38271e;
+  scrollbar-width: thin;
 }
 
 .hero-tab-btn {
@@ -510,18 +544,15 @@ body {
   border: 1px solid #4a3427;
   border-radius: 4px;
   color: #9c8a77;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.72rem;
   font-family: var(--font-regal);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   white-space: nowrap;
+  min-height: 36px;
+  flex-shrink: 0;
   transition: all 0.2s;
-}
-
-.hero-tab-btn:hover {
-  color: #fff;
-  border-color: var(--brass-accent);
 }
 
 .hero-tab-btn.active-tab {
@@ -535,48 +566,49 @@ body {
   background: #140d09;
   border: 1px solid #2d1c14;
   border-radius: 6px;
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.1rem;
 }
 
 .preview-badge {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-family: var(--font-regal);
   color: var(--brass-bright);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .hero-preview-box h4 {
   font-family: var(--font-editorial);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: #fff;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .preview-sub {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #a8947f;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
   font-style: italic;
 }
 
 .preview-desc {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #d8c8b4;
   line-height: 1.5;
 }
 
 /* ==========================================================================
-   CASE INVESTIGATION VIEW
+   CASE INVESTIGATION VIEW (MOBILE FIRST)
    ========================================================================== */
 .case-dossier-card {
   background: var(--panel-bg);
   border: 1px solid var(--brass-dark);
   border-radius: 8px;
   box-shadow: var(--shadow-desk);
-  padding: 2rem 2.25rem;
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(0.85rem, 3.5vw, 2rem);
   position: relative;
+  width: 100%;
 }
 
 .case-header-strip {
@@ -584,33 +616,33 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   border-bottom: 1px solid #3d2b21;
-  padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .case-level-subtitle {
   font-family: var(--font-regal);
   color: var(--brass-bright);
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .case-number-title {
   font-family: var(--font-editorial);
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 5vw, 2rem);
   color: #fff;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
-/* Lifeline Toolset */
+/* Responsive Lifeline Bar */
 .lifelines-bar {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.45rem;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -620,17 +652,20 @@ body {
   border: 1px solid var(--brass-dark);
   color: #e2d4c0;
   border-radius: 20px;
-  padding: 0.4rem 0.95rem;
-  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 38px;
   transition: all 0.2s ease;
 }
 
-.lifeline-pill-btn:hover:not(:disabled) {
+.lifeline-pill-btn:hover:not(:disabled),
+.lifeline-pill-btn:active:not(:disabled) {
   background: var(--brass-dark);
   color: #fff;
   border-color: var(--brass-bright);
@@ -651,65 +686,66 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
+  margin-left: 2px;
 }
 
-/* Aged Police Witness Report */
+/* Police Witness Statement Box */
 .case-evidence-dossier {
   background: var(--parchment-base);
   color: var(--ink-primary);
   border: 1px solid var(--parchment-aged);
   border-radius: 6px;
   box-shadow: var(--shadow-paper);
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 3.5vw, 1.5rem);
+  margin-bottom: 1.25rem;
   position: relative;
 }
 
 .evidence-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-family: var(--font-regal);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   color: #634b33;
-  letter-spacing: 2px;
-  margin-bottom: 0.75rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.65rem;
   border-bottom: 1px dashed #bda787;
-  padding-bottom: 0.35rem;
+  padding-bottom: 0.3rem;
 }
 
 .case-scenario-text {
   font-family: var(--font-typewriter);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: clamp(0.88rem, 2.5vw, 0.95rem);
+  line-height: 1.65;
   color: #211610;
 }
 
-/* Editorial Question Block */
+/* Question Box */
 .case-question-box {
   background: #19110d;
   border-left: 4px solid var(--brass-bright);
-  padding: 1.25rem 1.5rem;
+  padding: 1rem clamp(1rem, 3vw, 1.35rem);
   border-radius: 0 6px 6px 0;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.35rem;
 }
 
 .question-lead-tag {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-family: var(--font-regal);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--brass-bright);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .case-question-text {
   font-family: var(--font-editorial);
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 4.5vw, 1.35rem);
   color: #fff;
   line-height: 1.45;
   font-weight: 600;
@@ -719,55 +755,59 @@ body {
 .options-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
 }
 
 .option-card {
   background: #201611;
   border: 1px solid #443024;
   border-radius: 6px;
-  padding: 0.95rem 1.25rem;
+  padding: clamp(0.75rem, 2.5vw, 0.95rem) clamp(0.85rem, 3vw, 1.25rem);
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.85rem;
   cursor: pointer;
   text-align: left;
   transition: all 0.2s ease;
   width: 100%;
   color: #e4d7c5;
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  line-height: 1.45;
+  min-height: 48px;
 }
 
-.option-card:hover:not(:disabled) {
+.option-card:hover:not(:disabled),
+.option-card:active:not(:disabled) {
   background: #2c1e17;
   border-color: var(--brass-accent);
-  transform: translateX(4px);
 }
 
 .option-seal {
   background: #332219;
   border: 1.5px solid var(--brass-accent);
   color: var(--brass-bright);
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-regal);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .option-text {
   flex: 1;
+  word-break: break-word;
 }
 
-/* Correct / Incorrect Option States */
+/* Option States */
 .option-card.correct-deduction {
   background: #142a1b !important;
   border: 2px solid #34a853 !important;
@@ -811,8 +851,8 @@ body {
 /* Forensic Feedback Box */
 .feedback-box {
   border-radius: 6px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 3.5vw, 1.4rem);
+  margin-bottom: 1.35rem;
   animation: fadeIn 0.25s ease;
 }
 
@@ -822,12 +862,12 @@ body {
 }
 
 .feedback-box.correct-box {
-  background: rgba(25, 56, 40, 0.4);
+  background: rgba(25, 56, 40, 0.45);
   border: 1px solid var(--racing-green-border);
 }
 
 .feedback-box.flawed-box {
-  background: rgba(140, 32, 32, 0.35);
+  background: rgba(140, 32, 32, 0.4);
   border: 1px solid #a83232;
 }
 
@@ -835,14 +875,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .feedback-title {
   font-family: var(--font-regal);
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
   font-weight: 700;
 }
 
@@ -856,12 +896,12 @@ body {
 
 .forensic-stamp {
   font-family: var(--font-regal);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 900;
   text-transform: uppercase;
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 4px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   transform: rotate(-3deg);
   display: inline-block;
 }
@@ -879,16 +919,17 @@ body {
 }
 
 .feedback-explanation {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  line-height: 1.6;
   color: #eae0d4;
   border-top: 1px dashed rgba(255, 255, 255, 0.15);
-  padding-top: 0.75rem;
+  padding-top: 0.65rem;
 }
 
 .case-actions-bar {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -898,23 +939,24 @@ body {
   background: var(--panel-bg);
   border: 1px solid var(--brass-dark);
   border-radius: 8px;
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
   text-align: center;
   box-shadow: var(--shadow-desk);
+  width: 100%;
 }
 
 .cleared-crest-animation {
-  font-size: 3.25rem;
+  font-size: 3rem;
   color: var(--brass-bright);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .level-cleared-card h2 {
   font-family: var(--font-editorial);
-  font-size: 2.5rem;
+  font-size: clamp(1.85rem, 6vw, 2.5rem);
   color: #fff;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
 }
 
 .cleared-level-score-badge {
@@ -923,11 +965,11 @@ body {
   border: 2px solid var(--brass-accent);
   color: var(--brass-bright);
   font-family: var(--font-regal);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  padding: 0.4rem 1.6rem;
+  padding: 0.35rem 1.4rem;
   border-radius: 30px;
-  margin: 1rem 0 1.5rem;
+  margin: 0.85rem 0 1.25rem;
 }
 
 .cleared-stats-box {
@@ -935,15 +977,17 @@ body {
   border: 1px solid #38261c;
   border-radius: 6px;
   max-width: 480px;
-  margin: 0 auto 2rem;
-  padding: 1.25rem 1.5rem;
+  width: 100%;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
   text-align: left;
 }
 
 .cleared-stat-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.4rem 0;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -956,81 +1000,92 @@ body {
 }
 
 /* ==========================================================================
-   VICTORIAN CERTIFICATE (FINALE)
+   VICTORIAN CERTIFICATE (FINALE - TOUCH & PRINT READY)
    ========================================================================== */
 .finale-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
+  width: 100%;
 }
 
 .victorian-certificate {
   background: var(--parchment-bright);
   color: var(--ink-primary);
-  border: 14px double #3d2a1c;
+  border: clamp(8px, 2.5vw, 14px) double #3d2a1c;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-  padding: 3rem 2.5rem;
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
   text-align: center;
   position: relative;
   border-radius: 4px;
+  width: 100%;
 }
 
 .cert-corner {
   position: absolute;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border: 2px solid var(--brass-dark);
 }
-.cert-corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.cert-corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-.cert-corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-.cert-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+.cert-corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.cert-corner-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.cert-corner-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.cert-corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
 
 .cert-crest {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   color: #7a5a20;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .cert-title-regal {
   font-family: var(--font-regal);
-  font-size: 2rem;
+  font-size: clamp(1.35rem, 5vw, 2rem);
   font-weight: 900;
   color: #211610;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .cert-subtitle {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
   color: #5c4736;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.cert-body-text {
+  font-family: var(--font-editorial);
+  font-size: clamp(0.92rem, 2.8vw, 1.05rem);
+  color: #4a3c31;
+  margin-bottom: 0.35rem;
 }
 
 .cert-recipient-team {
   font-family: var(--font-editorial);
-  font-size: 2.75rem;
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
   font-weight: 700;
   color: var(--wax-oxblood);
   text-decoration: underline;
-  text-underline-offset: 6px;
-  margin: 0.5rem 0 1.5rem;
+  text-underline-offset: 4px;
+  margin: 0.35rem 0 1.25rem;
+  word-break: break-word;
 }
 
 .cert-rank-box {
   background: rgba(198, 159, 83, 0.12);
   border: 1.5px solid var(--brass-dark);
   border-radius: 6px;
-  padding: 1.15rem;
+  padding: 1rem;
   max-width: 580px;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto 1.5rem;
 }
 
 .cert-rank-title {
   font-family: var(--font-regal);
-  font-size: 1.35rem;
+  font-size: clamp(1.05rem, 4vw, 1.35rem);
   font-weight: 800;
   color: #5c4115;
   margin-bottom: 0.25rem;
@@ -1039,18 +1094,19 @@ body {
 .cert-rank-verdict {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #423225;
 }
 
 .cert-stats-grid {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  margin-bottom: 2rem;
+  gap: clamp(1rem, 5vw, 3rem);
+  margin-bottom: 1.5rem;
   border-top: 1px solid #d8c8b0;
   border-bottom: 1px solid #d8c8b0;
-  padding: 0.85rem 0;
+  padding: 0.75rem 0;
+  flex-wrap: wrap;
 }
 
 .cert-stat-item {
@@ -1059,7 +1115,7 @@ body {
 }
 
 .cert-stat-label {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   color: #796551;
   letter-spacing: 1px;
@@ -1067,7 +1123,7 @@ body {
 
 .cert-stat-value {
   font-family: var(--font-regal);
-  font-size: 1.4rem;
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
   font-weight: 800;
   color: #211610;
 }
@@ -1075,38 +1131,39 @@ body {
 .cert-signatures {
   display: flex;
   justify-content: space-around;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .cert-sig-block {
   text-align: center;
-  min-width: 170px;
+  min-width: 140px;
+  flex: 1;
 }
 
 .cert-sig-line {
   font-family: var(--font-typewriter);
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #1a1209;
   border-bottom: 1px solid #4a3423;
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.25rem;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .cert-sig-title {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   color: #6a5542;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .cert-wax-seal {
   position: absolute;
-  bottom: 25px;
-  right: 35px;
-  width: 76px;
-  height: 76px;
+  bottom: 18px;
+  right: 20px;
+  width: 66px;
+  height: 66px;
   background: radial-gradient(circle, var(--wax-oxblood-light) 0%, var(--wax-oxblood) 100%);
   border: 2px solid #570e0e;
   border-radius: 50%;
@@ -1116,61 +1173,69 @@ body {
   justify-content: center;
   color: #f7d4d4;
   font-family: var(--font-regal);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 900;
   text-align: center;
   letter-spacing: 1px;
   transform: rotate(-10deg);
 }
 
-/* Breakdown Table */
+/* Dossier Breakdown Table */
 .finale-details-card {
   background: var(--panel-bg);
   border: 1px solid var(--brass-dark);
   border-radius: 8px;
-  padding: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
   box-shadow: var(--shadow-desk);
+  width: 100%;
 }
 
 .finale-details-card h3 {
   font-family: var(--font-regal);
   color: var(--brass-bright);
-  font-size: 1.25rem;
-  letter-spacing: 1px;
-  margin-bottom: 1.25rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
   border-bottom: 1px solid #3d2b21;
   padding-bottom: 0.5rem;
 }
 
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+}
+
 .breakdown-table {
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
-  margin-bottom: 2rem;
 }
 
 .breakdown-table th,
 .breakdown-table td {
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.85rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
 }
 
 .breakdown-table th {
   font-family: var(--font-regal);
   color: var(--brass-bright);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   background: #17100b;
 }
 
 .status-pill {
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .status-solved {
@@ -1182,12 +1247,13 @@ body {
 .finale-action-bar {
   display: flex;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 /* ==========================================================================
-   MODALS: WATSON & REAGENT
+   MODALS (WATSON'S JOURNAL & 221B REAGENT)
    ========================================================================== */
 .modal-overlay {
   position: fixed;
@@ -1198,15 +1264,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem;
+  padding: 0.85rem;
 }
 
 .modal-dossier {
   background: var(--panel-bg);
   border: 1px solid var(--brass-accent);
   border-radius: 8px;
-  max-width: 620px;
+  max-width: 600px;
   width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
   position: relative;
   overflow: hidden;
@@ -1215,36 +1284,41 @@ body {
 .modal-header-bar {
   background: #17100b;
   border-bottom: 1px solid #3d2b21;
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .modal-header-bar h3 {
   font-family: var(--font-regal);
   color: var(--brass-bright);
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .close-modal-btn {
   background: none;
   border: none;
   color: #a48f7a;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   cursor: pointer;
-  transition: color 0.2s;
-}
-
-.close-modal-btn:hover {
-  color: #fff;
+  padding: 0.35rem;
+  line-height: 1;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-body {
-  padding: 1.5rem;
+  padding: clamp(1rem, 3.5vw, 1.35rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .watson-diary-entry {
@@ -1252,23 +1326,23 @@ body {
   color: var(--ink-primary);
   border: 1px solid var(--parchment-aged);
   border-radius: 6px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .watson-quote {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.25rem);
   line-height: 1.5;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   color: #211610;
 }
 
 .watson-signature {
   text-align: right;
   font-family: var(--font-typewriter);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: #634b33;
 }
 
@@ -1276,29 +1350,193 @@ body {
   background: #0f1614;
   border: 1px solid #2d6648;
   border-radius: 6px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .reagent-header {
   font-family: var(--font-regal);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #4ed187;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .reagent-formula {
   font-family: var(--font-typewriter);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: #e0f5ea;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .lifeline-deduction-notice {
   text-align: center;
   color: var(--brass-bright);
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   TARGETED MEDIA QUERIES (320px to 800px)
+   ========================================================================= */
+
+/* Tablets & Small Laptops (max-width: 768px) */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .investigator-pill {
+    display: none; /* Hide secondary label on tablet to keep header clean */
+  }
+
+  .finale-action-bar {
+    flex-direction: column;
+  }
+
+  .finale-action-bar button {
+    width: 100%;
+  }
+}
+
+/* Standard Mobile Phones (max-width: 600px) */
+@media (max-width: 600px) {
+  .baker-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .brand-text .brand-tagline {
+    display: none;
+  }
+
+  .brand-text h1 {
+    font-size: 0.92rem;
+    letter-spacing: 1px;
+  }
+
+  .brand-crest {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.95rem;
+  }
+
+  /* Progress Ribbon: Hide "DOSSIER " word and display Roman numerals I through VI */
+  .pill-prefix {
+    display: none;
+  }
+
+  .track-pill {
+    padding: 0.35rem 0.1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* Hero: Adjust Manila folder seal badge on mobile */
+  .folder-seal-stamp {
+    position: static;
+    margin: 0 auto 0.85rem;
+    transform: none;
+  }
+
+  .folder-seal-stamp:hover,
+  .folder-seal-stamp:active {
+    transform: scale(1.05);
+  }
+
+  /* Lifelines: Full 3-column equal grid */
+  .lifelines-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .lifeline-pill-btn {
+    width: 100%;
+    padding: 0.4rem 0.3rem;
+    font-size: 0.72rem;
+  }
+
+  .lifeline-label-full {
+    display: none;
+  }
+
+  .lifeline-label-short {
+    display: inline;
+  }
+
+  /* Next Case Button on Mobile */
+  .case-actions-bar button {
+    width: 100%;
+  }
+
+  /* Certificate adjustments */
+  .cert-wax-seal {
+    position: static;
+    margin: 1.25rem auto 0;
+    transform: none;
+  }
+
+  .cert-stats-grid {
+    flex-direction: column;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .cert-signatures {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+}
+
+/* Extra-small screens (max-width: 380px: iPhone SE, Galaxy Fold cover) */
+@media (max-width: 380px) {
+  .main-wrapper {
+    padding: 0 0.65rem;
+  }
+
+  .brand-text h1 {
+    font-size: 0.82rem;
+  }
+
+  .header-status-bar {
+    gap: 0.4rem;
+  }
+
+  .score-badge-header {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .score-badge-header .score-num {
+    font-size: 0.95rem;
+  }
+
+  .brass-btn-sm {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .hero-main-title {
+    font-size: 1.55rem;
+  }
+
+  .option-card {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .option-seal {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    font-size: 0.75rem;
+  }
+
+  .lifeline-pill-btn {
+    font-size: 0.68rem;
+  }
 }
 
 /* Print Styles */
@@ -1319,32 +1557,7 @@ body {
     padding: 0 !important;
   }
   .victorian-certificate {
-    border: 12px double #000 !important;
+    border: 10px double #000 !important;
     box-shadow: none !important;
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .header-status-bar {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .manila-case-folder {
-    padding: 2rem 1.25rem 1.5rem;
-  }
-  .hero-main-title {
-    font-size: 2.1rem;
-  }
-  .case-dossier-card {
-    padding: 1.5rem 1rem;
-  }
-  .cert-stats-grid {
-    gap: 1.25rem;
-    flex-direction: column;
   }
 }
