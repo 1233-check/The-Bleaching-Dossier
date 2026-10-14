@@ -667,7 +667,7 @@ const QUIZ_CONFIG = {
   questionsPerLevel: 8,
   totalQuestions: 48,
   pointsPerCorrect: 100,
-  defaultOwnerPin: "221B",
+  defaultOwnerPin: "20261014",
   deductionPointsPerLifeline: {
     watson: 10,
     loupe: 15,

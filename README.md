@@ -15,7 +15,7 @@ All 48 cases are calibrated specifically for **BDS Final Year** (Conservative De
 ---
 
 ## 🔑 Admin / Organizer Authorization PIN
-- **The master authorization PIN is: `221B`** (case-insensitive: accepts `221b` or `221B`).
+- **The master authorization PIN is: `20261014`**.
 - Access the Admin Portal by clicking the **"Owner Portal"** button in the top navigation bar.
 - Only fest organizers/judges with this PIN can unlock the **Master Tournament Leaderboard** and export standings.
 
@@ -27,7 +27,7 @@ To ensure competition integrity during college fests:
 - 👤 **Confidential Personal Results for Students**: Competing teams only see their individual score, accuracy percentage, level breakdown, and personalized **Victorian Certificate of Forensic Competence**. No competing team can view another team's ranking on their terminal.
 - 🛡️ **PIN-Protected Chief Inspector Master Leaderboard (Owner & Judges Only)**:
   - Accessible via the **"Owner Portal"** button in the top navigation bar.
-  - Guarded by the Organizer Authorization Passcode (**PIN: `221B`**).
+  - Guarded by the Organizer Authorization Passcode (**PIN: `20261014`**).
   - Displays the complete tournament standings across all teams, automatically sorted by score (descending) with Gold, Silver, and Bronze podium highlights.
   - Includes a one-click **"Export Master Tournament CSV"** to generate the final fest standings for prize announcements.
   - Includes **"Add Sample Teams"** for organizers to test the leaderboard before the fest starts, and **"Reset Leaderboard"** to clear data for new rounds.

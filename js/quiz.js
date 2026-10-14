@@ -943,9 +943,9 @@ class SherlockBleachingQuiz {
     const dashboardBox = document.getElementById("owner-dashboard-box");
 
     const enteredPin = pinInput ? pinInput.value.trim().toUpperCase() : "";
-    const expectedPin = QUIZ_CONFIG.defaultOwnerPin.toUpperCase(); // "221B"
+    const expectedPin = (QUIZ_CONFIG.defaultOwnerPin || "20261014").toUpperCase();
 
-    if (enteredPin === expectedPin || enteredPin === "221B") {
+    if (enteredPin === expectedPin || enteredPin === "20261014") {
       this.isOwnerAuthenticated = true;
       audioFX.playCorrect();
       if (pinError) pinError.classList.add("hidden");
