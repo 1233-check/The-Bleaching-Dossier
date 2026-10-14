@@ -139,19 +139,19 @@
 
         <!-- Interactive Level Selector Tabs -->
         <div class="hero-folder-tabs">
-          <button type="button" class="hero-tab-btn active-tab" data-level="1">Dossier I (MCQ)</button>
-          <button type="button" class="hero-tab-btn" data-level="2">Dossier II (Type-In)</button>
-          <button type="button" class="hero-tab-btn" data-level="3">Dossier III (MCQ)</button>
-          <button type="button" class="hero-tab-btn" data-level="4">Dossier IV (Type-In)</button>
-          <button type="button" class="hero-tab-btn" data-level="5">Dossier V (MCQ)</button>
-          <button type="button" class="hero-tab-btn" data-level="6">Dossier VI (MCQ)</button>
+          <button type="button" class="hero-tab-btn active-tab" data-level="1">Dossier I</button>
+          <button type="button" class="hero-tab-btn" data-level="2">Dossier II</button>
+          <button type="button" class="hero-tab-btn" data-level="3">Dossier III</button>
+          <button type="button" class="hero-tab-btn" data-level="4">Dossier IV</button>
+          <button type="button" class="hero-tab-btn" data-level="5">Dossier V</button>
+          <button type="button" class="hero-tab-btn" data-level="6">Dossier VI</button>
         </div>
 
         <!-- Dynamic Level Preview Card -->
         <div class="hero-preview-box" id="hero-level-preview">
           <div class="preview-badge"><i class="fa-solid fa-magnifying-glass"></i> Apprentice Investigator</div>
           <h4>Level I: The Discoloration Dossier</h4>
-          <p class="preview-sub">Etiology, Pathology & Diagnosis of Tooth Stains (Multiple Choice)</p>
+          <p class="preview-sub">Etiology, Pathology & Diagnosis of Tooth Stains (One-Word Deductions)</p>
           <p class="preview-desc">Inspect foundational aesthetic crimes: extrinsic chromophores, erythrocyte breakdown into hemosiderin and iron sulfide, fluorosis pitting, and tetracycline chelation windows.</p>
         </div>
       </div>
@@ -168,8 +168,8 @@
 
         <!-- Detective Lifelines Bar -->
         <div class="lifelines-bar">
-          <button type="button" id="lifeline-loupe-btn" class="lifeline-pill-btn" title="Eliminate two incorrect options or get a letter clue (-15 pts)">
-            <i class="fa-solid fa-magnifying-glass"></i> <span class="lifeline-label-full">50:50 Loupe</span><span class="lifeline-label-short">Loupe</span>
+          <button type="button" id="lifeline-loupe-btn" class="lifeline-pill-btn" title="Magnifying glass reveals letter clues (-15 pts)">
+            <i class="fa-solid fa-magnifying-glass"></i> <span class="lifeline-label-full">Loupe Clue</span><span class="lifeline-label-short">Loupe</span>
             <span class="lifeline-count" id="loupe-count-badge">6</span>
           </button>
 
@@ -203,32 +203,28 @@
         </div>
       </div>
 
-      <!-- 4 Options Grid (For MCQ Levels 1, 3, 5, 6) -->
-      <div class="options-grid" id="case-options-grid">
-        <!-- Rendered dynamically by quiz.js -->
-      </div>
-
-      <!-- One-Word Typewritten Deduction Box (For Levels 2 & 4) -->
-      <div id="case-typewriter-input-box" class="typewriter-input-wrapper hidden">
+      <!-- One-Word Typewritten Deduction Box (100% One-Word Answer Engine) -->
+      <div id="case-typewriter-input-box" class="typewriter-input-wrapper">
         <div class="typewriter-header">
-          <i class="fa-solid fa-keyboard"></i> Typewritten Forensic Deduction (Single Word or Chemical Formula):
+          <i class="fa-solid fa-keyboard"></i> Typewritten Forensic Deduction (Single Word / Number / Term):
         </div>
         <div class="typewriter-input-row">
           <input 
             type="text" 
             id="case-text-input" 
             class="vintage-typewriter-input" 
-            placeholder="Type your one-word answer..." 
+            placeholder="Type your one-word answer here..." 
             autocomplete="off" 
             autocapitalize="off" 
             spellcheck="false"
+            autofocus
           >
           <button type="button" id="submit-text-answer-btn" class="wax-seal-btn-sm">
             <i class="fa-solid fa-stamp"></i> Record Deduction
           </button>
         </div>
         <div class="typewriter-hint-note">
-          <small><i class="fa-solid fa-feather-pointed"></i> Press Enter or click 'Record Deduction'. Spacing & capitalization are handled automatically.</small>
+          <small><i class="fa-solid fa-feather-pointed"></i> Press Enter or click 'Record Deduction'. Any correct spelling, abbreviation, or chemical formula is accepted.</small>
         </div>
       </div>
 
@@ -424,14 +420,17 @@
         
         <form id="owner-pin-form" onsubmit="return false;">
           <div class="pin-input-group">
-            <label for="owner-pin-input"><i class="fa-solid fa-key"></i> Authorization Passcode</label>
+            <label for="owner-pin-input">
+              <i class="fa-solid fa-key"></i> Organizer Passcode 
+              <span style="color:var(--brass-bright); font-size:0.78rem; font-weight:700; letter-spacing:1px; margin-left:4px;">(PIN: 221B)</span>
+            </label>
             <input 
-              type="password" 
+              type="text" 
               id="owner-pin-input" 
               class="vintage-pin-input" 
-              placeholder="Enter PIN (Default: 221B)" 
+              placeholder="Enter 221B" 
               maxlength="20"
-              autocomplete="current-password"
+              autocomplete="off"
             >
             <button type="submit" id="submit-owner-pin-btn" class="wax-seal-btn" style="width: 100%; margin-top: 0.75rem;">
               <i class="fa-solid fa-lock-open"></i> Unlock Master Leaderboard

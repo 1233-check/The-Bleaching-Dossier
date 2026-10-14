@@ -1,5 +1,5 @@
 # 221B Baker Street: The Bleaching Dossier
-### A BDS Final Year Dental Bleaching Competition Web Application
+### A BDS Final Year Dental Bleaching Competition Web Application (100% One-Word Answer Engine)
 
 ---
 
@@ -14,58 +14,63 @@ All 48 cases are calibrated specifically for **BDS Final Year** (Conservative De
 
 ---
 
+## 🔑 Admin / Organizer Authorization PIN
+- **The master authorization PIN is: `221B`** (case-insensitive: accepts `221b` or `221B`).
+- Access the Admin Portal by clicking the **"Owner Portal"** button in the top navigation bar.
+- Only fest organizers/judges with this PIN can unlock the **Master Tournament Leaderboard** and export standings.
+
+---
+
 ## 🔐 Privacy & Owner-Only Leaderboard Architecture
 
 To ensure competition integrity during college fests:
 - 👤 **Confidential Personal Results for Students**: Competing teams only see their individual score, accuracy percentage, level breakdown, and personalized **Victorian Certificate of Forensic Competence**. No competing team can view another team's ranking on their terminal.
 - 🛡️ **PIN-Protected Chief Inspector Master Leaderboard (Owner & Judges Only)**:
   - Accessible via the **"Owner Portal"** button in the top navigation bar.
-  - Guarded by an Organizer Authorization Passcode (**Default PIN: `221B`**).
+  - Guarded by the Organizer Authorization Passcode (**PIN: `221B`**).
   - Displays the complete tournament standings across all teams, automatically sorted by score (descending) with Gold, Silver, and Bronze podium highlights.
   - Includes a one-click **"Export Master Tournament CSV"** to generate the final fest standings for prize announcements.
   - Includes **"Add Sample Teams"** for organizers to test the leaderboard before the fest starts, and **"Reset Leaderboard"** to clear data for new rounds.
 
 ---
 
-## 🧩 Mixed Question Formats (Concise & Interactive)
+## ⌨️ 100% One-Word Answer Forensic Deduction Format
 
-To avoid cognitive fatigue while testing real clinical recall:
-- **Concise Questions & Punchy Options**: Scenarios and answers are kept short, high-yield, and focused.
-- **Multiple Choice Inquiries (Levels 1, 3, 5, 6)**: Tactile wax seal option cards with perfectly balanced answer distributions (exactly 2 A's, 2 B's, 2 C's, and 2 D's per level).
-- **Interactive One-Word Typewritten Deductions (Levels 2 & 4)**: 
-  - **Level II (The Reagent Laboratory)** and **Level IV (The Scotland Yard Protocols)** require teams to type one-word forensic deductions (e.g., `ammonia`, `oxygen`, `carbopol`, `GIC`, `reservoir`, `scalloped`).
-  - Inputs are evaluated case-insensitively with flexible aliases and synonyms.
+All multiple choice options have been removed in favor of a fast, intuitive **One-Word Forensic Deduction** format across all 48 cases:
+- **Fast, Intuitive, and Accessible**: Each question features a short scenario, a direct inquiry, and friendly in-line clues (e.g., `Hint: H2O`, `Hint: GIC`, `Hint: 5.5`, `Hint: Oxygen`, `Hint: 48 hours`).
+- **Flexible Answer Matching**: Answers are evaluated case-insensitively, automatically trimming whitespace and accepting standard medical/chemical abbreviations, numbers, and common synonyms.
+- **Typewriter Input Interface**: Competing teams type their single-word answer into an aged parchment typewriter field with interactive mechanical typing clatter and carriage return sounds.
 
 ---
 
-## 🔍 Six Forensic Levels (8 Questions Per Level = 48 Clinical Cases)
+## 🔍 Six Forensic Levels (8 Questions Per Level = 48 One-Word Cases)
 
-1. **Dossier I: The Discoloration Dossier (Multiple Choice)**
-   - Etiology, pathology, and diagnosis: pulpal necrosis (iron sulfide FeS), tetracycline critical age windows (birth to 8 years), Dean's Fluorosis Index (Severe pitting), ameloblast targeting, extrinsic pellicle stains, retained sealers/gutta-percha, calcific metamorphosis, and hemosiderin.
-2. **Dossier II: The Reagent Laboratory (One-Word Typewritten Deductions)**
-   - Bleaching chemistry: ammonia buffering, perhydroxyl radicals ($HO_2^\bullet$), residual oxygen resin inhibition, Carbopol polymer thickener, distilled water safety in walking bleach, double-bond cleavage, critical enamel pH (5.5), and 35% hydrogen peroxide chairside protocols.
-3. **Dossier III: Baker Street Diagnostics (Multiple Choice)**
-   - Shade evaluation: Vita Classical value order (B1 lightest), dehydration opacity rebound, baseline shade timing before rubber dam placement, yellow-brown aging stain responsiveness, 5,500K daylight lighting, metamerism, and restoration compatibility.
-4. **Dossier IV: The Scotland Yard Protocols (One-Word Typewritten Deductions)**
-   - Operative execution: Glass Ionomer Cement (GIC) cervical barrier, 2 mm barrier thickness, CEJ leveling, Cavit temporary access seal, stone model reservoirs, liquid dam isolation, and scalloped tray trimming.
-5. **Dossier V: Forensic Pathology & Adverse Reactions (Multiple Choice)**
-   - Complications & relief: Absence of cervical barrier causing invasive root resorption, 7-14 day composite bonding delay, residual oxygen polymer inhibition, 10% sodium ascorbate (Vitamin C) reversal, Brännström hydrodynamic sensitivity, potassium nitrate nerve depolarization, Vitamin E for soft tissue blanching, and fluoride tubule occlusion.
-6. **Dossier VI: The Moriarty Enigma (Multiple Choice)**
-   - Complex cases & management: Croll's microabrasion (18% HCl + pumice), white spot lesion blending, 2-6 month extended tetracycline bleaching, rehydration shade stabilization, 48-hour post-bleach white diet, conservative vital bleaching for calcific canal obliteration, and deferral during pregnancy.
+1. **Dossier I: The Discoloration Dossier**
+   - Etiology, pathology, and diagnosis: Iron sulfide (`FeS`), tetracycline window (`8` years), Dean's index (`Severe`), target cells (`Ameloblasts`), surface stains (`Extrinsic`), root canal core point (`Gutta-percha`), pulp obliteration (`Tertiary` dentin), and blood pigment (`Hemosiderin`).
+2. **Dossier II: The Reagent Laboratory**
+   - Bleaching chemistry: Buffering gas (`Ammonia`), primary bleaching radical (`Perhydroxyl`), curing inhibitor (`Oxygen`), polymer thickener (`Carbopol`), safe vehicle (`Water`), chromophore bond (`Double`), critical pH (`5.5`), and 35% agent (`Hydrogen peroxide`).
+3. **Dossier III: Baker Street Diagnostics**
+   - Shade evaluation: Whitest tab (`B1`), dehydration effect (`Lighter`), baseline timing (`Before`), rapid-responding hue (`Yellow`), daylight temperature (`5500`), optical mismatch (`Metamerism`), resin bleaching (`No`), and Hue B (`Yellow`).
+4. **Dossier IV: The Scotland Yard Protocols**
+   - Operative execution: Cervical barrier cement (`GIC`), barrier thickness (`2` mm), landmark junction (`CEJ`), temporary seal (`Cavit`), gel space (`Reservoir`), soft tissue dam (`Liquid dam`), tray contour (`Scalloped`), and abandoned physical agent (`Heat`).
+5. **Dossier V: Forensic Pathology & Adverse Reactions**
+   - Biological complications: Destructive hazard (`Resorption`), bonding wait time (`1 to 2` weeks), oxygen neutralizer (`Sodium ascorbate` / `Vitamin C`), sensitivity theory (`Hydrodynamic`), desensitizing ion (`Potassium`), chemical burn first aid (`Vitamin E`), tubule blocker (`Fluoride`), and inhibition site (`Surface`).
+6. **Dossier VI: The Moriarty Enigma**
+   - Master cases & special care: Microabrasion acid (`Hydrochloric`), initial white spot appearance (`More` visible), tetracycline timeframe (`Months`), pellicle white diet (`48` hours), rehydration fluid (`Saliva`), calcific metamorphosis therapy (`Bleaching`), over-bleaching hue (`Grey`), and pregnancy guideline (`Postponed`).
 
 ---
 
 ## 🔎 Detective Lifelines System
-- 🔍 **50:50 Loupe**: Eliminates 2 incorrect options in MCQ levels, or reveals word length and first/last letter clues in Type-In levels (-15 pts).
+- 🔍 **Loupe Magnification**: Reveals character count and first/last letter clues, and automatically pre-fills the first letter in the typewriter input (-15 pts).
 - 🩺 **Dr. Watson's Consultation**: Dr. Watson opens his vintage ruled clinical ledger with a medical pointer (-10 pts).
 - 🧪 **221B Chemical Reagent**: Holmes performs a wet-lab chemical assay with a bubbling reaction animation (-20 pts).
 
 ---
 
 ## 🎭 Victorian Visual & Audio Effects
-- **Atmospheric Gaslamp Street Flicker**: Subtle breathing ambient illumination on page vignettes.
-- **Animated Rubber Stamp Slam**: Realistic ink stamp slam (`stampSlam` animation with rotation and spring bounce) stamping `VERIFIED` or `REJECTED` upon deduction submission.
-- **Dr. Watson's Ruled Medical Ledger**: Authentic ivory paper styling with light blue feint lines and red margin rule.
+- **Gaslamp Street Flicker**: Subtle breathing ambient illumination on page vignettes and aged parchment.
+- **Animated Rubber Stamp Slam (`stampSlam`)**: High-impact 3D rubber stamp slam animation that bounces and stamps `VERIFIED` (green) or `REJECTED` (red) onto the case file.
+- **Dr. Watson's Ruled Medical Ledger**: Modal styled with ivory paper, feint light blue notebook rules, and a double red vertical margin line.
 - **221B Bubbling Chemical Beaker**: Animated glowing emerald reaction flask in the laboratory modal.
 - **Pure Web Audio Synthesizer**: Typewriter clicks, carriage return bells, paper rustles, violin chords, and heavy wax seal thuds (100% offline, zero audio asset downloads).
 
@@ -83,7 +88,7 @@ python3 -m http.server 8000
 Open `http://localhost:8000` in your browser.
 
 ### 3. Fast-Forward Judge Demo Mode
-To immediately inspect the final **Certificate of Forensic Competence** and **Master Leaderboard** without manually answering 48 cases, click the **"Judge Demo: Fast-Forward"** button in the hero drawer.
+To immediately inspect the final **Certificate of Forensic Competence** and **Master Leaderboard** without manually typing 48 cases, click the **"Judge Demo: Fast-Forward"** button in the hero drawer.
 
 ---
 

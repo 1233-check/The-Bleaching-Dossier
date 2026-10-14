@@ -1,11 +1,15 @@
 /**
  * 221B Baker Street - The Bleaching Dossier: Game & Competition Engine
- * Handles:
- *  - Mixed Question Types: MCQs (Levels 1, 3, 5, 6) & One-Word Typewritten Deductions (Levels 2, 4)
- *  - Confidential Personal Results: Users see only their own scorecard, rank & certificate
- *  - PIN-Protected Owner/Judges Portal: Full Master Leaderboard, CSV Export & Controls
+ * 100% One-Word Answer Forensic Deduction System
+ * Built for BDS Final Year Dental Fest Competition
+ * Features:
+ *  - 100% One-Word / Single-Term Forensic Deductions (No MCQs)
+ *  - Generous Case-Insensitive Matching with Synonyms & Abbreviations
+ *  - Confidential Personal Results (Students see only their own certificate & score)
+ *  - PIN-Protected Chief Inspector Master Leaderboard (Owner & Judges only: PIN 221B)
+ *  - Interactive Loupe with Character Clues & First-Letter Auto Fill
  *  - Fast-Forward Judge Demo Mode
- *  - 100% Offline Web Audio Synthesizer Integration
+ *  - 100% Offline Pure Web Audio Synthesizer
  */
 
 class SherlockBleachingQuiz {
@@ -14,7 +18,6 @@ class SherlockBleachingQuiz {
     this.masterLeaderboardKey = "sherlock_bleaching_master_leaderboard";
     this.state = this.loadState() || this.getInitialState();
     this.currentQuestion = null;
-    this.eliminatedOptions = [];
     this.isOwnerAuthenticated = false;
     this.bindEvents();
     this.renderCurrentView();
@@ -116,7 +119,7 @@ class SherlockBleachingQuiz {
       returnToCaseBtn.addEventListener("click", () => this.returnToActiveCase());
     }
 
-    // 4. Owner Portal Buttons & Forms
+    // 4. Owner Portal Buttons & Forms (PIN 221B)
     const ownerPortalBtn = document.getElementById("owner-portal-btn");
     if (ownerPortalBtn) {
       ownerPortalBtn.addEventListener("click", () => this.openOwnerPortal());
@@ -265,9 +268,8 @@ class SherlockBleachingQuiz {
     const levelObj = QUIZ_LEVELS.find(l => l.id === levelId);
     const previewBox = document.getElementById("hero-level-preview");
     if (previewBox && levelObj) {
-      const typeLabel = levelObj.type === "text" ? "Type-In One-Word Deduction" : "Multiple Choice Inquiry";
       previewBox.innerHTML = `
-        <div class="preview-badge"><i class="fa-solid ${levelObj.icon}"></i> ${levelObj.badge} • ${typeLabel}</div>
+        <div class="preview-badge"><i class="fa-solid ${levelObj.icon}"></i> ${levelObj.badge} • One-Word Deduction</div>
         <h4>${levelObj.title}</h4>
         <p class="preview-sub">${levelObj.subtitle}</p>
         <p class="preview-desc">${levelObj.description}</p>
@@ -390,12 +392,11 @@ class SherlockBleachingQuiz {
   }
 
   // ==========================================
-  // QUESTION RENDERING (MCQ vs TYPEWRITER)
+  // QUESTION RENDERING (100% ONE-WORD DEDUCTIONS)
   // ==========================================
   renderCaseQuestion() {
     const levelQuestions = this.getLevelQuestions(this.state.currentLevelId);
     this.currentQuestion = levelQuestions[this.state.currentQuestionIndex];
-    this.eliminatedOptions = [];
 
     if (!this.currentQuestion) {
       console.error("Question not found for level", this.state.currentLevelId, "index", this.state.currentQuestionIndex);
@@ -407,8 +408,6 @@ class SherlockBleachingQuiz {
     const levelSubtitleEl = document.getElementById("case-level-subtitle");
     const scenarioBoxEl = document.getElementById("case-scenario-text");
     const questionTextEl = document.getElementById("case-question-text");
-    const optionsGridEl = document.getElementById("case-options-grid");
-    const typewriterBoxEl = document.getElementById("case-typewriter-input-box");
     const caseTextInput = document.getElementById("case-text-input");
     const submitTextBtn = document.getElementById("submit-text-answer-btn");
     const feedbackBoxEl = document.getElementById("case-feedback-box");
@@ -417,8 +416,7 @@ class SherlockBleachingQuiz {
     if (caseNumberEl) caseNumberEl.textContent = this.currentQuestion.caseTitle;
     if (levelSubtitleEl) {
       const levelObj = QUIZ_LEVELS.find(l => l.id === this.state.currentLevelId);
-      const modeTag = this.currentQuestion.type === "text" ? "[Type-In Deduction]" : "[Multiple Choice]";
-      levelSubtitleEl.textContent = `${levelObj.title} • Case ${this.state.currentQuestionIndex + 1} of ${QUIZ_CONFIG.questionsPerLevel} ${modeTag}`;
+      levelSubtitleEl.textContent = `${levelObj.title} • Case ${this.state.currentQuestionIndex + 1} of ${QUIZ_CONFIG.questionsPerLevel}`;
     }
     if (scenarioBoxEl) scenarioBoxEl.textContent = this.currentQuestion.scenario;
     if (questionTextEl) questionTextEl.textContent = this.currentQuestion.question;
@@ -426,38 +424,15 @@ class SherlockBleachingQuiz {
     if (feedbackBoxEl) feedbackBoxEl.classList.add("hidden");
     if (nextBtn) nextBtn.classList.add("hidden");
 
-    // Check Question Type: One-Word Text Input (Levels 2 & 4) vs MCQ (Levels 1, 3, 5, 6)
-    if (this.currentQuestion.type === "text") {
-      // Show Typewriter Input, Hide MCQ Grid
-      if (optionsGridEl) optionsGridEl.classList.add("hidden");
-      if (typewriterBoxEl) typewriterBoxEl.classList.remove("hidden");
-
-      if (caseTextInput) {
-        caseTextInput.value = "";
-        caseTextInput.disabled = false;
-        setTimeout(() => caseTextInput.focus(), 100);
-      }
-      if (submitTextBtn) submitTextBtn.disabled = false;
-    } else {
-      // Show MCQ Grid, Hide Typewriter Input
-      if (typewriterBoxEl) typewriterBoxEl.classList.add("hidden");
-      if (optionsGridEl) {
-        optionsGridEl.classList.remove("hidden");
-        optionsGridEl.innerHTML = "";
-        this.currentQuestion.options.forEach(opt => {
-          const optCard = document.createElement("button");
-          optCard.className = "option-card";
-          optCard.id = `option-btn-${opt.id}`;
-          optCard.setAttribute("data-option-id", opt.id);
-          optCard.innerHTML = `
-            <div class="option-seal">${opt.id}</div>
-            <div class="option-text">${opt.text}</div>
-          `;
-          optCard.addEventListener("click", () => this.handleOptionSelection(opt.id));
-          optionsGridEl.appendChild(optCard);
-        });
-      }
+    // Reset Typewriter Input Field
+    if (caseTextInput) {
+      caseTextInput.value = "";
+      caseTextInput.disabled = false;
+      caseTextInput.style.borderColor = "";
+      caseTextInput.style.background = "";
+      setTimeout(() => caseTextInput.focus(), 100);
     }
+    if (submitTextBtn) submitTextBtn.disabled = false;
 
     // Re-enable lifelines for current question
     const watsonBtn = document.getElementById("lifeline-watson-btn");
@@ -470,52 +445,10 @@ class SherlockBleachingQuiz {
   }
 
   // ==========================================
-  // ANSWER SUBMISSION (MCQ & TEXT)
+  // ANSWER SUBMISSION (100% ONE-WORD)
   // ==========================================
-  handleOptionSelection(selectedId) {
-    if (!this.currentQuestion || this.currentQuestion.type === "text") return;
-
-    // Lock all options
-    const allOptionCards = document.querySelectorAll(".option-card");
-    allOptionCards.forEach(card => card.disabled = true);
-
-    const isCorrect = (selectedId === this.currentQuestion.correctAnswer);
-    const selectedCard = document.getElementById(`option-btn-${selectedId}`);
-    const correctCard = document.getElementById(`option-btn-${this.currentQuestion.correctAnswer}`);
-
-    let pointsAwarded = 0;
-    if (isCorrect) {
-      pointsAwarded = QUIZ_CONFIG.pointsPerCorrect;
-      this.state.totalScore += pointsAwarded;
-      this.state.levelScores[this.state.currentLevelId] += pointsAwarded;
-      if (selectedCard) selectedCard.classList.add("correct-deduction");
-      audioFX.playCorrect();
-    } else {
-      if (selectedCard) selectedCard.classList.add("flawed-deduction");
-      if (correctCard) correctCard.classList.add("correct-deduction");
-      audioFX.playIncorrect();
-    }
-
-    // Audit log entry
-    this.state.auditLog.push({
-      level: this.state.currentLevelId,
-      caseNumber: this.state.currentQuestionIndex + 1,
-      caseTitle: this.currentQuestion.caseTitle,
-      questionId: this.currentQuestion.id,
-      selected: selectedId,
-      correct: this.currentQuestion.correctAnswer,
-      isCorrect: isCorrect,
-      points: pointsAwarded,
-      timestamp: new Date().toISOString()
-    });
-
-    this.saveState();
-    this.updateHeaderStats();
-    this.renderFeedbackBox(isCorrect);
-  }
-
   submitTextAnswer() {
-    if (!this.currentQuestion || this.currentQuestion.type !== "text") return;
+    if (!this.currentQuestion) return;
 
     const input = document.getElementById("case-text-input");
     const submitBtn = document.getElementById("submit-text-answer-btn");
@@ -535,7 +468,7 @@ class SherlockBleachingQuiz {
     input.disabled = true;
     if (submitBtn) submitBtn.disabled = true;
 
-    // Verify against accepted synonyms
+    // Verify against accepted synonyms & alphanumeric variations
     const alphaCleanVal = cleanVal.replace(/[^a-z0-9]/g, '');
     const isCorrect = this.currentQuestion.acceptedAnswers.some(ans => {
       const cleanAns = ans.trim().toLowerCase();
@@ -598,10 +531,7 @@ class SherlockBleachingQuiz {
         feedbackStamp.textContent = "REJECTED";
         feedbackStamp.className = "forensic-stamp stamp-rejected";
       }
-      const correctSolution = this.currentQuestion.type === "text"
-        ? this.currentQuestion.displayAnswer
-        : `Option [${this.currentQuestion.correctAnswer}]`;
-      if (feedbackTitle) feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Flawed Deduction. Correct Answer: ${correctSolution}`;
+      feedbackTitle.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Flawed Deduction. Correct Solution: <strong>${this.currentQuestion.displayAnswer}</strong>`;
     }
 
     if (feedbackText) {
@@ -700,7 +630,7 @@ class SherlockBleachingQuiz {
   }
 
   // ==========================================
-  // LIFELINES
+  // LIFELINES (TAILORED FOR ONE-WORD DEDUCTIONS)
   // ==========================================
   useWatsonLifeline() {
     if (this.state.lifelines.watson <= 0 || !this.currentQuestion) return;
@@ -741,45 +671,34 @@ class SherlockBleachingQuiz {
 
     audioFX.playLoupe();
 
-    if (this.currentQuestion.type === "text") {
-      // For Text questions: Loupe reveals first & last letters!
-      const ans = this.currentQuestion.displayAnswer;
-      const cleanWord = ans.split(" ")[0].replace(/[^a-zA-Z0-9]/g, '');
-      const firstLetter = cleanWord[0] || "";
-      const lastLetter = cleanWord[cleanWord.length - 1] || "";
-      
-      const modal = document.getElementById("watson-modal");
-      const modalContent = document.getElementById("watson-modal-text");
-      if (modal && modalContent) {
-        modalContent.innerHTML = `
-          <div class="watson-diary-entry">
-            <h4 style="font-family:var(--font-regal); color:#8c2020; margin-bottom:0.5rem;"><i class="fa-solid fa-magnifying-glass"></i> Loupe Optical Clue</h4>
-            <p class="watson-quote">"The forensic keyword starts with <strong>'${firstLetter.toUpperCase()}'</strong> and ends with <strong>'${lastLetter.toUpperCase()}'</strong> (${cleanWord.length} letters)."</p>
-            <div class="watson-signature">— 221B Loupe Magnification</div>
-          </div>
-          <div class="lifeline-deduction-notice">
-            <small><i class="fa-solid fa-circle-info"></i> Optical analysis fee (-${QUIZ_CONFIG.deductionPointsPerLifeline.loupe} pts)</small>
-          </div>
-        `;
-        modal.classList.remove("hidden");
-      }
-    } else {
-      // For MCQ: Eliminate 2 wrong choices
-      const incorrectOptions = this.currentQuestion.options.filter(o => o.id !== this.currentQuestion.correctAnswer);
-      const toEliminate = incorrectOptions.sort(() => 0.5 - Math.random()).slice(0, 2);
+    // Reveal word length & first/last character, and pre-fill first letter in input
+    const primaryAns = this.currentQuestion.displayAnswer;
+    const cleanWord = primaryAns.split(" ")[0].replace(/[^a-zA-Z0-9]/g, '');
+    const firstLetter = cleanWord[0] || "";
+    const lastLetter = cleanWord[cleanWord.length - 1] || "";
+    const charCount = cleanWord.length;
 
-      toEliminate.forEach(opt => {
-        this.eliminatedOptions.push(opt.id);
-        const optBtn = document.getElementById(`option-btn-${opt.id}`);
-        if (optBtn) {
-          optBtn.classList.add("eliminated-by-loupe");
-          optBtn.disabled = true;
-          optBtn.innerHTML = `
-            <div class="option-seal strikethrough-seal"><i class="fa-solid fa-xmark"></i></div>
-            <div class="option-text strikethrough-text">${opt.text} <em style="font-size:0.8rem; opacity:0.7;">(Eliminated)</em></div>
-          `;
-        }
-      });
+    // Auto-fill first letter in typewriter input
+    const caseInput = document.getElementById("case-text-input");
+    if (caseInput && firstLetter && !caseInput.value) {
+      caseInput.value = firstLetter.toUpperCase();
+      caseInput.focus();
+    }
+
+    const modal = document.getElementById("watson-modal");
+    const modalContent = document.getElementById("watson-modal-text");
+    if (modal && modalContent) {
+      modalContent.innerHTML = `
+        <div class="watson-diary-entry">
+          <h4 style="font-family:var(--font-regal); color:#8c2020; margin-bottom:0.5rem;"><i class="fa-solid fa-magnifying-glass"></i> 221B Loupe Magnification</h4>
+          <p class="watson-quote">"The forensic keyword begins with <strong>'${firstLetter.toUpperCase()}'</strong> and ends with <strong>'${lastLetter.toUpperCase()}'</strong> (${charCount} characters: <em>${firstLetter.toUpperCase()} _ _ _ ${lastLetter.toUpperCase()}</em>)."</p>
+          <div class="watson-signature">— Magnifying Loupe Clue (First letter placed in your typewriter!)</div>
+        </div>
+        <div class="lifeline-deduction-notice">
+          <small><i class="fa-solid fa-circle-info"></i> Optical analysis fee (-${QUIZ_CONFIG.deductionPointsPerLifeline.loupe} pts)</small>
+        </div>
+      `;
+      modal.classList.remove("hidden");
     }
 
     const btn = document.getElementById("lifeline-loupe-btn");
@@ -884,11 +803,10 @@ class SherlockBleachingQuiz {
       QUIZ_LEVELS.forEach(lvl => {
         const lvlCorrect = this.state.auditLog.filter(a => a.level === lvl.id && a.isCorrect).length;
         const lvlScore = this.state.levelScores[lvl.id] || 0;
-        const formatLabel = lvl.type === "text" ? "One-Word Clues" : "Multiple Choice";
         const row = document.createElement("tr");
         row.innerHTML = `
           <td><strong>${lvl.title}</strong></td>
-          <td><span style="font-size:0.8rem; color:#bda787;">${formatLabel}</span></td>
+          <td><span style="font-size:0.8rem; color:#bda787;">One-Word Clues</span></td>
           <td>${lvlCorrect} / ${QUIZ_CONFIG.questionsPerLevel}</td>
           <td><strong>${lvlScore} pts</strong></td>
           <td><span class="status-pill status-solved">VERIFIED</span></td>
@@ -909,7 +827,7 @@ class SherlockBleachingQuiz {
       ["Total Questions", QUIZ_CONFIG.totalQuestions],
       ["Solved Correctly", this.state.auditLog.filter(a => a.isCorrect).length],
       [""],
-      ["Level", "Case #", "Case Title", "Selected Deduction", "Correct Solution", "Status", "Points Awarded", "Timestamp"]
+      ["Level", "Case #", "Case Title", "Your Deduction", "Official Solution", "Status", "Points Awarded", "Timestamp"]
     ];
 
     this.state.auditLog.forEach(item => {
@@ -937,7 +855,7 @@ class SherlockBleachingQuiz {
   }
 
   confirmResetGame() {
-    if (confirm("Register next competitor? (Your personal session will reset, while completed tournament records remain securely stored in the Chief Inspector Master Archive).")) {
+    if (confirm("Register next competitor? (Your personal terminal will reset, while completed tournament records remain safely stored in the Chief Inspector Master Archive).")) {
       audioFX.playPaperShuffle();
       this.clearState();
       this.renderCurrentView();
@@ -945,7 +863,7 @@ class SherlockBleachingQuiz {
   }
 
   // ==========================================
-  // MASTER LEADERBOARD & OWNER PORTAL (PIN PROTECTED)
+  // MASTER LEADERBOARD & OWNER PORTAL (PIN: 221B)
   // ==========================================
   recordToMasterLeaderboard() {
     if (!this.state.team.name) return;
@@ -1025,9 +943,9 @@ class SherlockBleachingQuiz {
     const dashboardBox = document.getElementById("owner-dashboard-box");
 
     const enteredPin = pinInput ? pinInput.value.trim().toUpperCase() : "";
-    const expectedPin = QUIZ_CONFIG.defaultOwnerPin.toUpperCase();
+    const expectedPin = QUIZ_CONFIG.defaultOwnerPin.toUpperCase(); // "221B"
 
-    if (enteredPin === expectedPin) {
+    if (enteredPin === expectedPin || enteredPin === "221B") {
       this.isOwnerAuthenticated = true;
       audioFX.playCorrect();
       if (pinError) pinError.classList.add("hidden");
@@ -1233,8 +1151,8 @@ class SherlockBleachingQuiz {
       caseNumber: (idx % 8) + 1,
       caseTitle: q.caseTitle,
       questionId: q.id,
-      selected: q.type === "text" ? q.displayAnswer : q.correctAnswer,
-      correct: q.type === "text" ? q.displayAnswer : q.correctAnswer,
+      selected: q.displayAnswer,
+      correct: q.displayAnswer,
       isCorrect: idx !== 18 && idx !== 35, // 46 of 48 correct
       points: (idx !== 18 && idx !== 35) ? 100 : 0,
       timestamp: new Date(Date.now() - (48 - idx) * 15000).toISOString()
