@@ -15,8 +15,9 @@ All 48 cases are calibrated specifically for **BDS Final Year** (Conservative De
 ---
 
 ## 🔑 Admin / Organizer Authorization PIN
-- **The master authorization PIN is: `20261014`**.
-- Access the Admin Portal by clicking the **"Owner Portal"** button in the top navigation bar.
+- **Master Authorization PIN**: `20261014` (Private to Fest Organizers & Judges).
+- **Hidden & Masked in UI**: The passcode is completely hidden from the web interface (masked as `••••••••` in a password field, with no on-screen display of the PIN) to prevent participants from seeing it during live competitions.
+- Access the Admin Portal by clicking the **"Owner Portal"** button in the top navigation bar and entering `20261014`.
 - Only fest organizers/judges with this PIN can unlock the **Master Tournament Leaderboard** and export standings.
 
 ---
@@ -27,7 +28,7 @@ To ensure competition integrity during college fests:
 - 👤 **Confidential Personal Results for Students**: Competing teams only see their individual score, accuracy percentage, level breakdown, and personalized **Victorian Certificate of Forensic Competence**. No competing team can view another team's ranking on their terminal.
 - 🛡️ **PIN-Protected Chief Inspector Master Leaderboard (Owner & Judges Only)**:
   - Accessible via the **"Owner Portal"** button in the top navigation bar.
-  - Guarded by the Organizer Authorization Passcode (**PIN: `20261014`**).
+  - Guarded by the Organizer Authorization Passcode (**PIN: `20261014`**, masked input).
   - Displays the complete tournament standings across all teams, automatically sorted by score (descending) with Gold, Silver, and Bronze podium highlights.
   - Includes a one-click **"Export Master Tournament CSV"** to generate the final fest standings for prize announcements.
   - Includes **"Add Sample Teams"** for organizers to test the leaderboard before the fest starts, and **"Reset Leaderboard"** to clear data for new rounds.
@@ -37,8 +38,9 @@ To ensure competition integrity during college fests:
 ## ⌨️ 100% One-Word Answer Forensic Deduction Format
 
 All multiple choice options have been removed in favor of a fast, intuitive **One-Word Forensic Deduction** format across all 48 cases:
-- **Fast, Intuitive, and Accessible**: Each question features a short scenario, a direct inquiry, and friendly in-line clues (e.g., `Hint: H2O`, `Hint: GIC`, `Hint: 5.5`, `Hint: Oxygen`, `Hint: 48 hours`).
-- **Flexible Answer Matching**: Answers are evaluated case-insensitively, automatically trimming whitespace and accepting standard medical/chemical abbreviations, numbers, and common synonyms.
+- **Fast, Intuitive, and Focused**: Each question features a clinical scenario and a direct inquiry without giving away the answer in the prompt text.
+- **Three Strategic Lifelines**: Competitors can consult Dr. Watson's Medical Notes, request a 221B Chemical Reagent Analysis, or use the Baker Street Loupe Clue (reveals word length and letter hints without spoiling the answer).
+- **Flexible Answer Matching**: Answers are evaluated case-insensitively, automatically trimming whitespace and accepting standard medical/chemical abbreviations, numbers, and common clinical synonyms.
 - **Typewriter Input Interface**: Competing teams type their single-word answer into an aged parchment typewriter field with interactive mechanical typing clatter and carriage return sounds.
 
 ---

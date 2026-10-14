@@ -948,6 +948,7 @@ class SherlockBleachingQuiz {
     if (enteredPin === expectedPin || enteredPin === "20261014") {
       this.isOwnerAuthenticated = true;
       audioFX.playCorrect();
+      if (pinInput) pinInput.value = "";
       if (pinError) pinError.classList.add("hidden");
       if (authBox) authBox.classList.add("hidden");
       if (dashboardBox) dashboardBox.classList.remove("hidden");
@@ -956,8 +957,12 @@ class SherlockBleachingQuiz {
       audioFX.playIncorrect();
       if (pinError) pinError.classList.remove("hidden");
       if (pinInput) {
+        pinInput.value = "";
         pinInput.classList.add("shake-error");
-        setTimeout(() => pinInput.classList.remove("shake-error"), 500);
+        setTimeout(() => {
+          pinInput.classList.remove("shake-error");
+          pinInput.focus();
+        }, 500);
       }
     }
   }
