@@ -896,26 +896,36 @@ button, input {
 
 .forensic-stamp {
   font-family: var(--font-regal);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 900;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 4px;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   transform: rotate(-3deg);
   display: inline-block;
+  animation: stampSlam 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes stampSlam {
+  0% { transform: scale(2.8) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(0.92) rotate(-4deg); opacity: 1; }
+  85% { transform: scale(1.06) rotate(-2deg); }
+  100% { transform: scale(1) rotate(-3deg); opacity: 1; }
 }
 
 .stamp-verified {
   border: 2px solid #4ed187;
   color: #4ed187;
-  background: rgba(78, 209, 135, 0.12);
+  background: rgba(78, 209, 135, 0.16);
+  box-shadow: 0 0 12px rgba(78, 209, 135, 0.3);
 }
 
 .stamp-rejected {
   border: 2px solid #ff6b6b;
   color: #ff6b6b;
-  background: rgba(255, 107, 107, 0.12);
+  background: rgba(255, 107, 107, 0.16);
+  box-shadow: 0 0 12px rgba(255, 107, 107, 0.3);
 }
 
 .feedback-explanation {
@@ -1322,36 +1332,71 @@ button, input {
 }
 
 .watson-diary-entry {
-  background: var(--parchment-base);
-  color: var(--ink-primary);
+  background: #fbf6ec;
+  background-image: 
+    linear-gradient(90deg, transparent 42px, #e8a2a2 43px, transparent 44px),
+    repeating-linear-gradient(transparent, transparent 26px, #cad9e8 27px, #cad9e8 28px);
+  color: #1a120b;
   border: 1px solid var(--parchment-aged);
+  border-left: 4px double #8c2020;
   border-radius: 6px;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 3rem;
   margin-bottom: 0.85rem;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.watson-diary-entry::before {
+  content: "✦ Dr. Watson's Ledger ✦";
+  display: block;
+  font-family: var(--font-regal);
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  color: #8c2020;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
 }
 
 .watson-quote {
   font-family: var(--font-editorial);
   font-style: italic;
   font-size: clamp(1.1rem, 3.5vw, 1.25rem);
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 0.65rem;
-  color: #211610;
+  color: #1e1309;
 }
 
 .watson-signature {
   text-align: right;
   font-family: var(--font-typewriter);
-  font-size: 0.82rem;
-  color: #634b33;
+  font-size: 0.85rem;
+  color: #553b22;
+  font-weight: 700;
 }
 
 .reagent-lab-strip {
-  background: #0f1614;
-  border: 1px solid #2d6648;
+  background: radial-gradient(circle at 50% 20%, #153322 0%, #0c1813 100%);
+  border: 1.5px solid #34a853;
   border-radius: 6px;
   padding: 1.25rem;
   margin-bottom: 0.85rem;
+  box-shadow: 0 0 20px rgba(52, 168, 83, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.reagent-lab-strip::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 85% 85%, rgba(78, 209, 135, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  animation: bubblePulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes bubblePulse {
+  0% { opacity: 0.4; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1.02); }
 }
 
 .reagent-header {
@@ -1359,15 +1404,20 @@ button, input {
   font-size: 0.78rem;
   color: #4ed187;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.4rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .reagent-formula {
   font-family: var(--font-typewriter);
-  font-size: 0.92rem;
-  color: #e0f5ea;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  color: #eafbf1;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
 }
 
 .lifeline-deduction-notice {
@@ -1539,6 +1589,307 @@ button, input {
   }
 }
 
+/* ==========================================================================
+   TYPEWRITER ONE-WORD DEDUCTION INPUT (LEVELS 2 & 4)
+   ========================================================================== */
+.typewriter-input-wrapper {
+  background: var(--parchment-base);
+  border: 2px solid var(--parchment-aged);
+  border-radius: 6px;
+  padding: clamp(1rem, 3.5vw, 1.5rem);
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+  color: var(--ink-primary);
+}
+
+.typewriter-header {
+  font-family: var(--font-regal);
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  font-weight: 800;
+  color: var(--ink-calligraphy);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.typewriter-input-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  width: 100%;
+}
+
+.vintage-typewriter-input {
+  flex: 1;
+  background: #fffdf7;
+  border: 1.5px solid #6b533e;
+  border-radius: 4px;
+  padding: clamp(0.7rem, 2.5vw, 0.9rem) 1rem;
+  font-family: var(--font-typewriter);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #1a120a;
+  letter-spacing: 1px;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.vintage-typewriter-input:focus {
+  border-color: var(--wax-oxblood);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(140, 32, 32, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.wax-seal-btn-sm {
+  background: radial-gradient(circle at 35% 35%, var(--wax-oxblood-light) 0%, var(--wax-oxblood) 100%);
+  color: #fff;
+  border: 1px solid #570e0e;
+  border-radius: 4px;
+  padding: clamp(0.7rem, 2.5vw, 0.9rem) clamp(1rem, 3vw, 1.5rem);
+  font-family: var(--font-regal);
+  font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.wax-seal-btn-sm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+.wax-seal-btn-sm:active {
+  transform: translateY(1px);
+}
+
+.typewriter-hint-note {
+  margin-top: 0.5rem;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  color: #6a533f;
+}
+
+/* ==========================================================================
+   PERSONAL RESULTS CONFIDENTIAL BANNER
+   ========================================================================== */
+.personal-confidential-ribbon {
+  background: rgba(198, 159, 83, 0.1);
+  border: 1px solid var(--brass-accent);
+  border-left: 4px solid var(--brass-bright);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: #e6dac6;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  line-height: 1.45;
+}
+
+.personal-confidential-ribbon i {
+  color: var(--brass-bright);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   OWNER / FEST ORGANIZER PORTAL MODAL
+   ========================================================================== */
+.owner-vault-dossier {
+  max-width: 820px !important;
+  border: 2px solid var(--brass-accent) !important;
+}
+
+.owner-auth-panel {
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  text-align: center;
+}
+
+.vault-crest {
+  font-size: 2.8rem;
+  color: var(--brass-bright);
+  margin-bottom: 0.75rem;
+  animation: crestGlint 3s ease-in-out infinite alternate;
+}
+
+@keyframes crestGlint {
+  0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(198, 159, 83, 0.2)); }
+  100% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(227, 188, 112, 0.6)); }
+}
+
+.owner-auth-panel h3 {
+  font-family: var(--font-regal);
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: #fff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.vault-desc {
+  font-size: 0.9rem;
+  color: #bda787;
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.pin-input-group {
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.pin-input-group label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--brass-accent);
+  margin-bottom: 0.4rem;
+}
+
+.vintage-pin-input {
+  width: 100%;
+  background: #17100b;
+  border: 1.5px solid var(--brass-dark);
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-typewriter);
+  font-size: 1.25rem;
+  color: var(--brass-bright);
+  letter-spacing: 3px;
+  text-align: center;
+  outline: none;
+}
+
+.vintage-pin-input:focus {
+  border-color: var(--brass-bright);
+  box-shadow: 0 0 12px rgba(198, 159, 83, 0.35);
+}
+
+.owner-pin-error-msg {
+  color: #ff8585;
+  font-size: 0.82rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.owner-ribbon-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #17100b;
+  border: 1px solid #38261c;
+  border-radius: 4px;
+  padding: 0.5rem 0.85rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.confidential-badge {
+  color: #ff9999;
+  font-family: var(--font-regal);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+}
+
+.master-leaderboard-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.master-leaderboard-table th,
+.master-leaderboard-table td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.86rem;
+}
+
+.master-leaderboard-table th {
+  font-family: var(--font-regal);
+  color: var(--brass-bright);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #17100b;
+}
+
+.podium-rank-1 {
+  background: rgba(227, 188, 112, 0.15) !important;
+  border-left: 3px solid var(--brass-bright);
+}
+
+.podium-rank-2 {
+  background: rgba(192, 192, 192, 0.1) !important;
+  border-left: 3px solid #c0c0c0;
+}
+
+.podium-rank-3 {
+  background: rgba(205, 127, 50, 0.1) !important;
+  border-left: 3px solid #cd7f32;
+}
+
+.rank-badge-gold {
+  color: #ffd700;
+  font-weight: 800;
+}
+.rank-badge-silver {
+  color: #d1d5db;
+  font-weight: 800;
+}
+.rank-badge-bronze {
+  color: #e59866;
+  font-weight: 800;
+}
+
+.owner-actions-row {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+/* Gaslamp Atmospheric Pulse on Vignette */
+.hero-dossier-wrap {
+  animation: gaslampFlicker 8s ease-in-out infinite;
+}
+
+@keyframes gaslampFlicker {
+  0%, 100% { filter: drop-shadow(0 0 15px rgba(198, 159, 83, 0.08)); }
+  45% { filter: drop-shadow(0 0 25px rgba(198, 159, 83, 0.18)); }
+  50% { filter: drop-shadow(0 0 10px rgba(198, 159, 83, 0.05)); }
+  55% { filter: drop-shadow(0 0 22px rgba(198, 159, 83, 0.16)); }
+}
+
+@media (max-width: 600px) {
+  .typewriter-input-row {
+    flex-direction: column;
+  }
+  .typewriter-input-row button {
+    width: 100%;
+  }
+  .owner-actions-row {
+    flex-direction: column;
+  }
+  .owner-actions-row button {
+    width: 100%;
+  }
+}
+
 /* Print Styles */
 @media print {
   body {
@@ -1549,6 +1900,7 @@ button, input {
   .level-progress-bar,
   .finale-details-card,
   .finale-action-bar,
+  .personal-confidential-ribbon,
   .modal-overlay {
     display: none !important;
   }
